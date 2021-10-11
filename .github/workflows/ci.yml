@@ -71,4 +71,6 @@ jobs:
       - name: Download artifact
         if: ${{ success() }}
         uses: actions/download-artifact@v2
-      
+        with:
+          name: web-artifact
+          path: web/
