@@ -83,9 +83,9 @@ jobs:
           echo "This step would be replaced with e.g. a Marketplace Action for deploying to some target test env..."
       
       # Download and pack the code
-      - name: Download artifact
+      - name: Upload artifact
         if: ${{ success() }}
-        uses: actions/download-artifact@v2
+        uses: actions/upload-artifact@v2
         with:
-          name: artifact
+          name: my-test-artifact
           path: dist/

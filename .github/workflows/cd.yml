@@ -32,7 +32,7 @@ jobs:
         run: echo "Specific deploy steps..."
 
       # Download and pack the code
-      - name: Download artifact
+      - name: Upload artifact
         if: ${{ success() }}
         uses: actions/upload-artifact@v2
         with:
