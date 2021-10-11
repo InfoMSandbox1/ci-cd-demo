@@ -52,7 +52,8 @@ jobs:
       - name: Run test suite
         run: |
           npm ci
-          npm run test --if-present
+          npm run build --if-present
+          npm test
   
   # If both linting and CI succeeds we want to deploy the code to a test environment
   deploy-test:
@@ -62,21 +63,23 @@ jobs:
     environment:
       name: test-env
       # Environment URL can be dynamic
-      url: ${{ env.TARGET_URL }}
+      url: https://${{ env.BASE_URL }}.test.company
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       
       # Determining hte target URL can for example be done in a separate step like this
-      - name: Determine target url
+      - name: Determine base url
         id: determine_url
         run: |
+          echo "Determining base URL according to some criteria..."
+          echo "BASE_URL="site1"" >> $GITHUB_ENV
           
       # Placeholder - this step would be some action or run commands that deploys the code
       - name: Deploy to test env
         if: ${{ success() }}
         run: |
-          echo "Deploying to test environment - ${{ env.TARGET_URL }}..."
+          echo "Deploying to test environment - ${{ env.BASE_URL }}..."
           echo "This step would be replaced with e.g. a Marketplace Action for deploying to some target test env..."
       
       # Download and pack the code
@@ -85,4 +88,4 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: artifact
-          path: source/
+          path: dist/
