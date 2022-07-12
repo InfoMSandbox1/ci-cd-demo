@@ -68,7 +68,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       
-      # Determining hte target URL can for example be done in a separate step like this
+      # Determining the target URL can for example be done in a separate step like this
       - name: Determine base url
         id: determine_url
         run: |
