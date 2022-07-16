@@ -1,4 +1,4 @@
-# CI/CD
+# CI/CD Demo
 
 Demo repository for using GitHub Actions in a CI/CD context.
 
